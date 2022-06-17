@@ -18,16 +18,13 @@ class ParticleData(HouseInfo):
 
   def get_data_concentrations(self, data):
     particulate = {"good": 0, "moderate": 0, "bad": 0}
-    key = ""
     for rec in data:
       
       if rec <= 50.0:
-        key = "good"
+        particulate["good"] = particulate["good"] + 1
       elif rec > 50.0 and rec <= 100.0:
-        key = "moderate"
+        particulate["moderate"] = particulate["moderate"] + 1
       elif rec > 100.0:
-        key = "bad"
-
-      particulate[key] = particulate[key] + 1
+        particulate["bad"] = particulate["bad"] + 1
 
     return particulate
